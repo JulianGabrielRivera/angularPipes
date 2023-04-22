@@ -1,0 +1,15 @@
+<p>betterform works!</p>
+<div class="form-area">
+    <!-- ngForm is a special type of directive that coems with forms module -->
+<!-- in order to make it template driven we add ngform, template variable is # and can be named anything -->
+<!-- paremeter of submit is the template variable -->
+    <form #f ="ngForm" (submit) ="onSubmit(f)">
+
+        <!-- we use this ngModel directive and not with data two binding -->
+<input type="text" placeholder="name" name="fullName" ngModel #fullName = 'ngModel' (change)="getValue(fullName)" required>
+<div *ngIf="fullName.touched && fullName.invalid"> Full Name is required...</div>
+<input type="email" placeholder="email" name="email" ngModel #email="ngModel" >
+<textarea name="" id="" cols="30" rows="10" placeholder="address" name="address" ngModel #address ='ngModel'></textarea>
+<button [disabled] = "f.invalid">Submit</button>
+    </form>
+</div>

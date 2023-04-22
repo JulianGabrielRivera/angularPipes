@@ -1,0 +1,56 @@
+<p>reactiveform works!</p>
+<form [formGroup] ='form' (ngSubmit)="onSubmit()">
+
+    <input type="text" placeholder="name" name="fullName" formControlName = 'fullName' >
+    <div *ngIf ="fullName.touched && fullName.invalid">
+    <div *ngIf="fullName.errors?.required"> Full named required</div>
+    <div *ngIf="fullName.errors?.minlength"> name of min 5 required</div>
+</div>
+    <br>
+    <input type="email" placeholder="email" name="email" formControlName ='email'  >
+    <div *ngIf="email.errors?.required"> email required</div>
+    <div *ngIf="email.errors?.email"> invalid email</div>
+    <br>
+
+
+
+<!-- contact details -->
+<div formGroupName="contactDetails">
+
+    <label>address</label>
+<textarea name="address"  placeholder="address" formControlAddress ='address'></textarea>
+<br>
+<label>Contact Number</label>
+<input type="contactNo" placeholder="contactNo" name="contactNo" formControlName ='contactNo'  >
+<div *ngIf="contactNo.errors?.required"> Contact Number required</div>
+<br>
+<div>
+<label> shipping address</label>
+<textarea name="shippingAddress"  placeholder="shippingAddress" formControlAddress ='shippingAddress'></textarea>
+<!-- <div *ngIf ="address.touched && address.invalid"> -->
+    
+</div>
+</div>
+<div>
+
+    <label for="">skills</label>
+    <input type="text" #skill (keyup.enter)="addSkills(skill)">
+
+    <ul >
+
+        <li *ngFor="let skill of Skills.controls;let i = index">
+
+        {{skill.value}}
+        <a href="" (click)="deleteSkills(i, $event)">X</a>
+        </li>
+    </ul>
+</div>
+
+
+    <!-- <div *ngIf="address.errors?.required"> address required</div> -->
+    <!-- </div> -->
+    <!-- <div *ngIf="address.errors?.address"> invalid address</div> -->
+    <br>
+    <button >Submit</button>
+        </form>
+    
